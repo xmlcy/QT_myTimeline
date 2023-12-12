@@ -18,8 +18,9 @@ public:
     explicit SimpleTimeline(QObject *parent = nullptr);
     ~SimpleTimeline(); // 在析构函数中释放动态分配的内存
 
-    void createAnimate(QObject *target, const QByteArray &propertyName, int msecs);
-    void addFrame(QObject *target, const QByteArray &propertyName, qreal step, const QVariant &value);
+    void createAnimate(QObject *target, const QByteArray &propertyName, QString name, int msecs);
+    void addFrame(QString name, int index, qreal step, const QVariant &value);
+    void addFrame(QString name, qreal step, const QVariant &value);
 
     void start();
 
@@ -33,7 +34,7 @@ signals:
     void animationFinished();
 private:
     QParallelAnimationGroup parGroup;
-    std::vector<QSequentialAnimationGroup*> seqGroup;
+    std::map<QString, QSequentialAnimationGroup*> seqGroup;
     std::vector<QPropertyAnimation*> animation;
 
 };
