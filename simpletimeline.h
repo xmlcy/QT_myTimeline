@@ -7,6 +7,7 @@
 #include <QParallelAnimationGroup>
 #include <QSequentialAnimationGroup>
 #include <vector>
+#include "MyAnimationGroup.h"
 
 
 class SimpleTimeline : public QObject
@@ -18,9 +19,9 @@ public:
     explicit SimpleTimeline(QObject *parent = nullptr);
     ~SimpleTimeline(); // 在析构函数中释放动态分配的内存
 
-    void createAnimate(QObject *target, const QByteArray &propertyName, QString name, int msecs);
-    void addFrame(QString name, int index, qreal step, const QVariant &value);
-    void addFrame(QString name, qreal step, const QVariant &value);
+    void createAnimate(QObject *target, QString name);
+
+    void addFrame(QObject *target,QString name, const QVariant &value, int type, qreal time, const QByteArray &propertyName);
 
     void start();
 
@@ -34,7 +35,8 @@ signals:
     void animationFinished();
 private:
     QParallelAnimationGroup parGroup;
-    std::map<QString, QSequentialAnimationGroup*> seqGroup;
+//    std::map<QString, QSequentialAnimationGroup*> seqGroup;
+    std::vector<MyAnimationGroup> seqGroup;
     std::vector<QPropertyAnimation*> animation;
 
 };
