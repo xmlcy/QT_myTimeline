@@ -22,6 +22,8 @@ public:
     void createAnimate(QObject *target, QString name);
 
     void addFrame(QObject *target,QString name, const QVariant &value, int type, qreal time, const QByteArray &propertyName);
+    void deleteFrame(QString name, qreal time);
+    void updateFrame(QString name, const QVariant &value, int type, qreal time);
 
     void start();
 

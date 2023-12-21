@@ -37,6 +37,8 @@ Widget::Widget(QWidget *parent)
     timeline->addFrame(this,"posani",QPoint(600,300), 1 , 3000, "pos");
     timeline->addFrame(this,"posani",QPoint(300,600), 10 , 5000, "pos");
     timeline->addFrame(this,"posani",QPoint(300,300), 15 , 4000, "pos");
+    timeline->deleteFrame("posani",4000);
+    timeline->updateFrame("posani", QPoint(600,600), 2, 3000);
 
 
 
